@@ -1,10 +1,10 @@
-export function getRandomNumber(min, max) {
+function getRandomNumber(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-export function getIdx(max, pickedIds = []) {
+function getIdx(max, pickedIds = []) {
   const min = 0;
 
   let idx = getRandomNumber(min, max);
@@ -23,7 +23,7 @@ export function getIdx(max, pickedIds = []) {
   return idx;
 }
 
-const getRandomMovieFromSpreadSheet = (spreadsheetId, range, google) => {
+const getRandomFromSpreadSheet = (spreadsheetId, range, google) => {
   if (!spreadsheetId) {
     throw new Error('No spreadsheet id provided');
   }
@@ -47,9 +47,15 @@ const getRandomMovieFromSpreadSheet = (spreadsheetId, range, google) => {
       },
       (err, response) => {
         if (err) reject(err);
-        const movies = response.values;
-        resolve(movies[getIdx(movies.length, pickedIds)]);
+        const values = response.data.values;
+        resolve(values[getIdx(values.length, pickedIds)]);
       }
     );
   });
+};
+
+module.exports = {
+  getRandomNumber,
+  getIdx,
+  getRandomFromSpreadSheet,
 };

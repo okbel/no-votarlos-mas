@@ -10,7 +10,7 @@ module.exports = {
     process.env.GOOGLE_SPREADSHEET_ID ||
     '18Q3kTrNtTYUyscylEly5mMms_n9g_sj0IPdAnn-9EME',
   GOOGLE_SPREADSHEET_RANGE:
-    process.env.GOOGLE_SPREADSHEET_ID || 'diversidadmedia!C16:H1017',
+    process.env.GOOGLE_SPREADSHEET_RANGE || 'diversidadmedia!C16:H1017',
   //
   //
   //

@@ -9,60 +9,28 @@ const {
 const {
   getRandomNumber,
   getIdxQuote,
-  getRandomMovieFromSpreadSheet,
+  getRandomFromSpreadSheet,
 } = require('./utils');
 
 function init() {
   // Starting bot
-  console.info('Running Diversidad Media Bot');
+  console.info('Running Bot');
 
   const glClient = createGoogleClient();
   const twClient = createTwitterClient();
 
-  const twStream = twClient.stream('statuses/filter', {
-    track: [TWITTER_HANDLE],
-  });
-
-  twStream.on('tweet', (tweet) => {
-    var twittero = tweet.user.screen_name;
-    var nameID = tweet.id_str;
-
-    getRandomMovieFromSpreadSheet(
+  setInterval(() => {
+    getRandomFromSpreadSheet(
       GOOGLE_SPREADSHEET_ID,
       GOOGLE_SPREADSHEET_RANGE,
       glClient
-    ).then((movie) => {
-      const [name, year, gen, theme, trailer] = movie;
-
-      let params = {
-        status: `Hola @${twittero}! te recomiendo: ${name} (${year}) - Género / Temática: ${gen} ${theme} - Trailer: ${trailer}`,
-        in_reply_to_status_id: nameID,
-      };
-
-      twClient.post('statuses/update', params, (err, data, response) => {
-        if (err !== undefined) {
-          console.log(err);
-        } else {
-          console.log(`Tweeted: ${params.status}`);
-        }
-      });
-    });
-  });
-
-  setInterval(function() {
-    getRandomMovieFromSpreadSheet(
-      GOOGLE_SPREADSHEET_ID,
-      GOOGLE_SPREADSHEET_RANGE,
-      glClient
-    ).then((movie) => {
-      const [name, year, gen, theme, trailer] = movie;
+    ).then((row) => {
+      const [name, handle] = row;
       twClient.post('statuses/update', {
-        status: `${name} (${year}) - Género / Temática: ${gen} ${theme} - Trailer: ${trailer}`,
+        status: `${name} - ${handle}`,
       });
     });
-  }, 7.2e6); // 2hs
+  }, 1.8e6); // 30 mins
 }
 
-module.exports = {
-  init,
-};
+init();

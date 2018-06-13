@@ -5,7 +5,15 @@
   "author": "Belen Curcio",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^6.0.0",
     "googleapis": "^32.0.0",
     "twit": "^2.2.10"
+  },
+  "scripts": {
+    "start": "dotenv node index.js ",
+    "watch": "dotenv nodemon index.js "
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
   }
 }

@@ -1,19 +1,19 @@
-const {
-  GOOGLE_CLIENT_EMAIL,
-  GOOGLE_PRIVATE_KEY,
-  GOOGLE_PROVIDERS,
-} = require('./config');
+const { google } = require('googleapis');
+
+const { GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY } = require('../config');
 
 const createGoogleClient = () => {
   const auth = new google.auth.JWT(
     GOOGLE_CLIENT_EMAIL,
     null,
     GOOGLE_PRIVATE_KEY,
-    GOOGLE_PROVIDERS,
+    ['https://www.googleapis.com/auth/spreadsheets'],
     null
   );
 
-  return google.options({ auth });
+  google.options({ auth });
+
+  return google;
 };
 
 module.exports = {
