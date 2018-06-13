@@ -1,0 +1,11 @@
+{
+  "name": "diversidad-media-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Belen Curcio",
+  "license": "MIT",
+  "dependencies": {
+    "googleapis": "^32.0.0",
+    "twit": "^2.2.10"
+  }
+}
