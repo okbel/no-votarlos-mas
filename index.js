@@ -27,7 +27,7 @@ function init() {
   ).then((row) => {
     const [name, handle, _, quote = ''] = row;
 
-    const twHandle = handle ? `(${quote})` : '';
+    const twHandle = handle ? `(${handle})` : '';
     const cQuote = quote ? `:${quote}` : '';
 
     twClient.post('statuses/update', {
@@ -43,7 +43,7 @@ function init() {
     ).then((row) => {
       const [name, handle, _, quote = ''] = row;
 
-      const twHandle = handle ? `(${quote})` : '';
+      const twHandle = handle ? `(${handle})` : '';
       const cQuote = quote ? `:${quote}` : '';
 
       twClient.post('statuses/update', {
