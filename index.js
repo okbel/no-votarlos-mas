@@ -1,8 +1,6 @@
 const { createGoogleClient } = require('./services/google');
 const { createTwitterClient } = require('./services/twitter');
 
-require('dotenv').config();
-
 const {
   GOOGLE_SPREADSHEET_ID,
   GOOGLE_SPREADSHEET_RANGE,
