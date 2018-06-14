@@ -27,7 +27,7 @@ function init() {
   ).then((row) => {
     const [name, handle, _, quote] = row;
     twClient.post('statuses/update', {
-      status: `${name}(${handle}): "${quote}"`,
+      status: `${name} (${handle}): ${quote}`,
     });
   });
 
@@ -39,10 +39,10 @@ function init() {
     ).then((row) => {
       const [name, handle, _, quote] = row;
       twClient.post('statuses/update', {
-        status: `${name}(${handle}): "${quote}"`,
+        status: `${name} (${handle}): ${quote}`,
       });
     });
-  }, 1.8e6); // 30 mins
+  }, 900000); // 15 mins
 }
 
 init();
