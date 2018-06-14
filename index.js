@@ -25,9 +25,9 @@ function init() {
     GOOGLE_SPREADSHEET_RANGE,
     glClient
   ).then((row) => {
-    const [name, handle, _, quote] = row;
+    const [name, handle, _, quote = ''] = row;
     twClient.post('statuses/update', {
-      status: `${name} (${handle}): ${quote}`,
+      status: `${name} (${handle})${quote ? `:${quote}` : ''}`,
     });
   });
 
@@ -37,9 +37,9 @@ function init() {
       GOOGLE_SPREADSHEET_RANGE,
       glClient
     ).then((row) => {
-      const [name, handle, _, quote] = row;
+      const [name, handle, _, quote = ''] = row;
       twClient.post('statuses/update', {
-        status: `${name} (${handle}): ${quote}`,
+        status: `${name} (${handle})${quote ? `:${quote}` : ''}`,
       });
     });
   }, 900000); // 15 mins
