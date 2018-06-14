@@ -27,11 +27,11 @@ function init() {
   ).then((row) => {
     const [name, handle, _, quote = ''] = row;
 
-    const handle = handle ? `(${quote})` : '';
-    const quote = quote ? `:${quote}` : '';
+    const twHandle = handle ? `(${quote})` : '';
+    const cQuote = quote ? `:${quote}` : '';
 
     twClient.post('statuses/update', {
-      status: `${name} ${handle} ${quote}`,
+      status: `${name} ${twHandle} ${cQuote}`,
     });
   });
 
@@ -43,11 +43,11 @@ function init() {
     ).then((row) => {
       const [name, handle, _, quote = ''] = row;
 
-      const handle = handle ? `(${quote})` : '';
-      const quote = quote ? `:${quote}` : '';
+      const twHandle = handle ? `(${quote})` : '';
+      const cQuote = quote ? `:${quote}` : '';
 
       twClient.post('statuses/update', {
-        status: `${name} ${handle} ${quote}`,
+        status: `${name} ${twHandle} ${cQuote}`,
       });
     });
   }, 900000); // 15 mins
