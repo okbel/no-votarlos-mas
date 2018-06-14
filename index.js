@@ -26,8 +26,12 @@ function init() {
     glClient
   ).then((row) => {
     const [name, handle, _, quote = ''] = row;
+
+    const handle = handle ? `(${quote})` : '';
+    const quote = quote ? `:${quote}` : '';
+
     twClient.post('statuses/update', {
-      status: `${name} (${handle})${quote ? `:${quote}` : ''}`,
+      status: `${name} ${handle} ${quote}`,
     });
   });
 
@@ -38,8 +42,12 @@ function init() {
       glClient
     ).then((row) => {
       const [name, handle, _, quote = ''] = row;
+
+      const handle = handle ? `(${quote})` : '';
+      const quote = quote ? `:${quote}` : '';
+
       twClient.post('statuses/update', {
-        status: `${name} (${handle})${quote ? `:${quote}` : ''}`,
+        status: `${name} ${handle} ${quote}`,
       });
     });
   }, 900000); // 15 mins
